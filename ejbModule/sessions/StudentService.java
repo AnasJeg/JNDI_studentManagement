@@ -28,13 +28,13 @@ public class StudentService implements IDao<Student>{
 	    
 	    if (st == null) throw new RuntimeException("Student not found");
 	    
-	    st.setLogin(o.getLogin());
-	    st.setPassword(o.getPassword());
-	    st.setFiliere(o.getFiliere());
-	    st.setFirstname(o.getFirstname());
-	    st.setLastname(o.getLastname());
-	    st.setTell(o.getTell());
-	    st.setRoles(o.getRoles());
+        st.setLogin(st.getLogin());
+        st.setPassword(st.getPassword());
+        st.setFiliere(st.getFiliere());
+        st.setFirstname(st.getFirstname());
+        st.setLastname(st.getLastname());
+        st.setTell(st.getTell());
+        st.setRoles(st.getRoles());
 	    
 	    entityManager.merge(st);
 	    
