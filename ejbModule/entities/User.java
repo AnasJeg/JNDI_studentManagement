@@ -18,9 +18,10 @@ import jakarta.persistence.ManyToMany;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	protected Long id;
+	protected int id;
 	protected String password;
 	protected String login;
 	
@@ -33,18 +34,23 @@ public class User implements Serializable{
 	public User() {
 		super();
 	}
-
+	public User(int id, String password, String login) {
+		super();
+		this.id=id;
+		this.password = password;
+		this.login = login;
+	}
 	public User(String password, String login) {
 		super();
 		this.password = password;
 		this.login = login;
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

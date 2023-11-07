@@ -9,6 +9,7 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class Student extends User implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	private String firstname;
 	private String lastname;
 	private String tell;

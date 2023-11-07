@@ -4,6 +4,9 @@ import java.util.List;
 
 import dao.IDao;
 import entities.Filiere;
+import entities.Role;
+import entities.Student;
+import entities.User;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -47,7 +50,7 @@ public class FiliereService implements IDao<Filiere>{
 	}
 
 	@Override
-	public Filiere findById(Long id) {
+	public Filiere findById(int id) {
 		Filiere st=entityManager.find(Filiere.class, id);
 		if(st == null) throw new RuntimeException("Filiere not found");
 		return st;
@@ -58,6 +61,18 @@ public class FiliereService implements IDao<Filiere>{
 		Query query=entityManager.createQuery("select f from Filiere f");
 		// TODO Auto-generated method stub
 		return query.getResultList();
+	}
+
+	@Override
+	public List<Student> findAllByFiliere(Filiere filiere) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void affect(Role r, User u) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -3,7 +3,10 @@ package sessions;
 import java.util.List;
 
 import dao.IDao;
+import entities.Filiere;
 import entities.Role;
+import entities.Student;
+import entities.User;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -45,7 +48,7 @@ public class RoleService implements IDao<Role>{
 	}
 
 	@Override
-	public Role findById(Long id) {
+	public Role findById(int id) {
 		Role st=entityManager.find(Role.class, id);
 		if(st == null) throw new RuntimeException("Role not found");
 		return st;
@@ -53,9 +56,23 @@ public class RoleService implements IDao<Role>{
 
 	@Override
 	public List<Role> findAll() {
-		Query query=entityManager.createQuery("select f from Role f");
+		Query query=entityManager.createQuery("select r from Role r");
 		// TODO Auto-generated method stub
 		return query.getResultList();
+	}
+	
+	public void affect(Role r, User u) {
+		r=entityManager.merge(r);
+		u=entityManager.merge(u);
+		u.getRoles().add(r);
+		entityManager.merge(u);
+		
+	}
+
+	@Override
+	public List<Student> findAllByFiliere(Filiere filiere) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

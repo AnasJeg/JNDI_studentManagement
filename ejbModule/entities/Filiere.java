@@ -12,9 +12,10 @@ import jakarta.persistence.OneToMany;
 
 @Entity
 public class Filiere implements Serializable{
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private int id;
 	private String code;
 	private String name;
 	
@@ -25,15 +26,19 @@ public class Filiere implements Serializable{
 	public Filiere() {
 
 	}
-	public Filiere(Long id, String code, String name) {
+	public Filiere(String code, String name) {
+		this.code = code;
+		this.name = name;
+	}
+	public Filiere(int id, String code, String name) {
 		this.id = id;
 		this.code = code;
 		this.name = name;
 	}
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getCode() {
