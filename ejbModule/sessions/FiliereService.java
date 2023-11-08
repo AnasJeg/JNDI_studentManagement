@@ -3,6 +3,7 @@ package sessions;
 import java.util.List;
 
 import dao.IDao;
+import dao.IDaoLocal;
 import entities.Filiere;
 import entities.Role;
 import entities.Student;
@@ -13,7 +14,7 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 
 @Stateless(name = "filiereService")
-public class FiliereService implements IDao<Filiere>{
+public class FiliereService implements IDao<Filiere>,IDaoLocal<Filiere>{
 	
 	@PersistenceContext
 	private EntityManager entityManager;

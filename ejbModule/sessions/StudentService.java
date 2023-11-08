@@ -3,6 +3,7 @@ package sessions;
 import java.util.List;
 
 import dao.IDao;
+import dao.IDaoLocal;
 import entities.Filiere;
 import entities.Role;
 import entities.Student;
@@ -13,16 +14,19 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 
 @Stateless(name = "studentService")
-public class StudentService implements IDao<Student>{
+public class StudentService implements IDao<Student>,IDaoLocal<Student>{
 	
 	@PersistenceContext
 	private EntityManager entityManager;
 
 	@Override
-	public Student create(Student o) {
-		entityManager.persist(o);
-		return o;
-	}
+	  public Student create(Student o) {
+        if (o.getFiliere() != null && o.getFiliere().getId() == 0) {
+            entityManager.persist(o.getFiliere());
+        }
+        entityManager.persist(o);
+        return o;
+    }
 
 	@Override
 	public Student update(Student o) {
