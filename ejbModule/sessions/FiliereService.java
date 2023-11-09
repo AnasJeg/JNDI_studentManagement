@@ -8,6 +8,7 @@ import entities.Filiere;
 import entities.Role;
 import entities.Student;
 import entities.User;
+import jakarta.annotation.security.PermitAll;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -20,12 +21,14 @@ public class FiliereService implements IDao<Filiere>,IDaoLocal<Filiere>{
 	private EntityManager entityManager;
 
 	@Override
+	@PermitAll
 	public Filiere create(Filiere o) {
 		entityManager.persist(o);
 		return o;
 	}
 
 	@Override
+	@PermitAll
 	public Filiere update(Filiere o) {
 		
 	    Filiere st = entityManager.find(Filiere.class, o.getId());
@@ -34,7 +37,7 @@ public class FiliereService implements IDao<Filiere>,IDaoLocal<Filiere>{
 	    
 	    st.setCode(o.getCode());
 	    st.setName(o.getName());
-	    st.setStudents(o.getStudents());
+	 //   st.setStudents(o.getStudents());
 	   
 	    entityManager.merge(st);
 	    
@@ -42,6 +45,7 @@ public class FiliereService implements IDao<Filiere>,IDaoLocal<Filiere>{
 	}
 
 	@Override
+	@PermitAll
 	public boolean delete(Filiere o) {
 	    Filiere st = entityManager.find(Filiere.class, o.getId());
 	    
@@ -51,6 +55,7 @@ public class FiliereService implements IDao<Filiere>,IDaoLocal<Filiere>{
 	}
 
 	@Override
+	@PermitAll
 	public Filiere findById(int id) {
 		Filiere st=entityManager.find(Filiere.class, id);
 		if(st == null) throw new RuntimeException("Filiere not found");
@@ -58,6 +63,7 @@ public class FiliereService implements IDao<Filiere>,IDaoLocal<Filiere>{
 	}
 
 	@Override
+	@PermitAll
 	public List<Filiere> findAll() {
 		Query query=entityManager.createQuery("select f from Filiere f");
 		// TODO Auto-generated method stub
@@ -65,12 +71,14 @@ public class FiliereService implements IDao<Filiere>,IDaoLocal<Filiere>{
 	}
 
 	@Override
+	@PermitAll
 	public List<Student> findAllByFiliere(Filiere filiere) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	@PermitAll
 	public void affect(Role r, User u) {
 		// TODO Auto-generated method stub
 		

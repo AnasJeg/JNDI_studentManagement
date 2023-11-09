@@ -19,8 +19,8 @@ public class Filiere implements Serializable{
 	private String code;
 	private String name;
 	
-	@OneToMany(mappedBy = "filiere")
-	private List<Student> students=new ArrayList<>();
+	//@OneToMany(mappedBy = "filiere")
+	// private List<Student> students=new ArrayList<>();
 	
 
 	public Filiere() {
@@ -54,11 +54,12 @@ public class Filiere implements Serializable{
 		this.name = name;
 	}
 	
-	public List<Student> getStudents() {
+/*	public List<Student> getStudents() {
 		return students;
 	}
 	public void setStudents(List<Student> students) {
 		this.students = students;
 	}
 
+*/
 }

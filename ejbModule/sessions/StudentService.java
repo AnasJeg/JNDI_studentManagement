@@ -8,6 +8,7 @@ import entities.Filiere;
 import entities.Role;
 import entities.Student;
 import entities.User;
+import jakarta.annotation.security.PermitAll;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -20,6 +21,7 @@ public class StudentService implements IDao<Student>,IDaoLocal<Student>{
 	private EntityManager entityManager;
 
 	@Override
+	@PermitAll
 	  public Student create(Student o) {
         if (o.getFiliere() != null && o.getFiliere().getId() == 0) {
             entityManager.persist(o.getFiliere());
@@ -29,6 +31,7 @@ public class StudentService implements IDao<Student>,IDaoLocal<Student>{
     }
 
 	@Override
+	@PermitAll
 	public Student update(Student o) {
 		
 	    Student st = entityManager.find(Student.class, o.getId());
@@ -49,6 +52,7 @@ public class StudentService implements IDao<Student>,IDaoLocal<Student>{
 	}
 
 	@Override
+	@PermitAll
 	public boolean delete(Student o) {
 	    Student st = entityManager.find(Student.class, o.getId());
 	    
@@ -58,6 +62,7 @@ public class StudentService implements IDao<Student>,IDaoLocal<Student>{
 	}
 
 	@Override
+	@PermitAll
 	public Student findById(int id) {
 		Student st=entityManager.find(Student.class, id);
 		if(st == null) throw new RuntimeException("student not found");
@@ -65,12 +70,14 @@ public class StudentService implements IDao<Student>,IDaoLocal<Student>{
 	}
 
 	@Override
+	@PermitAll
 	public List<Student> findAll() {
 		Query query=entityManager.createQuery("select s from Student s");
 		// TODO Auto-generated method stub
 		return query.getResultList();
 	}
 	
+	@PermitAll
 	public List<Student> findAllByFiliere(Filiere filiere) {
 		Query query=entityManager.createQuery("select s from Student s where s.filiere =: filiere");
 		query.setParameter("filiere", filiere);
@@ -79,6 +86,7 @@ public class StudentService implements IDao<Student>,IDaoLocal<Student>{
 	}
 
 	@Override
+	@PermitAll
 	public void affect(Role r, User u) {
 		// TODO Auto-generated method stub
 		

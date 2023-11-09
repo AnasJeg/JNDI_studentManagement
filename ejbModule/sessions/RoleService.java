@@ -8,6 +8,7 @@ import entities.Filiere;
 import entities.Role;
 import entities.Student;
 import entities.User;
+import jakarta.annotation.security.PermitAll;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -20,12 +21,14 @@ public class RoleService implements IDao<Role>,IDaoLocal<Role>{
 	private EntityManager entityManager;
 
 	@Override
+	@PermitAll
 	public Role create(Role o) {
 		entityManager.persist(o);
 		return o;
 	}
 
 	@Override
+	@PermitAll
 	public Role update(Role o) {
 		
 	    Role st = entityManager.find(Role.class, o.getId());
@@ -40,6 +43,7 @@ public class RoleService implements IDao<Role>,IDaoLocal<Role>{
 	}
 
 	@Override
+	@PermitAll
 	public boolean delete(Role o) {
 	    Role st = entityManager.find(Role.class, o.getId());
 	    
@@ -49,6 +53,7 @@ public class RoleService implements IDao<Role>,IDaoLocal<Role>{
 	}
 
 	@Override
+	@PermitAll
 	public Role findById(int id) {
 		Role st=entityManager.find(Role.class, id);
 		if(st == null) throw new RuntimeException("Role not found");
@@ -56,12 +61,14 @@ public class RoleService implements IDao<Role>,IDaoLocal<Role>{
 	}
 
 	@Override
+	@PermitAll
 	public List<Role> findAll() {
 		Query query=entityManager.createQuery("select r from Role r");
 		// TODO Auto-generated method stub
 		return query.getResultList();
 	}
 	
+	@PermitAll
 	public void affect(Role r, User u) {
 		r=entityManager.merge(r);
 		u=entityManager.merge(u);

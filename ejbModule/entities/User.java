@@ -25,10 +25,12 @@ public class User implements Serializable{
 	protected String password;
 	protected String login;
 	
-	@ManyToMany
-	@JoinTable(name = "role_user",
-			joinColumns = @JoinColumn(name = "user_id"), 
-			  inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @ManyToMany
+    @JoinTable(
+            name = "user_role", 
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+        )
 	protected List<Role> roles;
 	
 	public User() {

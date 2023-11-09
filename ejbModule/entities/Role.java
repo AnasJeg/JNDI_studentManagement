@@ -8,6 +8,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+
 
 @Entity
 public class Role implements Serializable{
@@ -17,8 +20,15 @@ public class Role implements Serializable{
 	private int id;
 	private String name;
 	
-	@ManyToMany(mappedBy = "roles")
-	private List<User> users;
+	/*
+	 *  @ManyToMany
+	    @JoinTable(
+	        name = "user_role",
+	        joinColumns = @JoinColumn(name = "role_id"),
+	        inverseJoinColumns = @JoinColumn(name = "user_id")
+	    )
+    private List<User> users;
+	 */
 	
 	public Role(int id, String name) {
 
@@ -43,13 +53,13 @@ public class Role implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public List<User> getUsers() {
+/*	public List<User> getUsers() {
 		return users;
 	}
 	public void setUsers(List<User> users) {
 		this.users = users;
 	}
-	
+	*/
 	
 	
 
