@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -25,7 +26,7 @@ public class User implements Serializable{
 	protected String password;
 	protected String login;
 	
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_role", 
             joinColumns = @JoinColumn(name = "user_id"),

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -20,15 +21,9 @@ public class Role implements Serializable{
 	private int id;
 	private String name;
 	
-	/*
-	 *  @ManyToMany
-	    @JoinTable(
-	        name = "user_role",
-	        joinColumns = @JoinColumn(name = "role_id"),
-	        inverseJoinColumns = @JoinColumn(name = "user_id")
-	    )
+
+	 @ManyToMany(mappedBy = "roles" ,fetch = FetchType.LAZY)
     private List<User> users;
-	 */
 	
 	public Role(int id, String name) {
 
@@ -53,14 +48,18 @@ public class Role implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-/*	public List<User> getUsers() {
+	public List<User> getUsers() {
 		return users;
 	}
 	public void setUsers(List<User> users) {
 		this.users = users;
 	}
-	*/
-	
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return name;
+	}
 	
 
 }

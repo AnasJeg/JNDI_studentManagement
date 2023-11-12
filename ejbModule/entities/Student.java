@@ -28,7 +28,13 @@ public class Student extends User implements Serializable{
 		this.lastname = lastname;
 		this.tell = tell;
 	}
-
+	public Student(String password, String login,String firstname, String lastname, String tell,Filiere filiere) {
+		super(password, login);
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.tell = tell;
+		this.filiere=filiere;
+	}
 	public String getFirstname() {
 		return firstname;
 	}

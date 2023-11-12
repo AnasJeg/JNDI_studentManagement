@@ -70,10 +70,7 @@ public class RoleService implements IDao<Role>,IDaoLocal<Role>{
 	
 	@PermitAll
 	public void affect(Role r, User u) {
-		r=entityManager.merge(r);
-		u=entityManager.merge(u);
-		u.getRoles().add(r);
-		entityManager.merge(u);
+
 		
 	}
 

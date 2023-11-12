@@ -33,23 +33,23 @@ public class StudentService implements IDao<Student>,IDaoLocal<Student>{
 	@Override
 	@PermitAll
 	public Student update(Student o) {
-		
 	    Student st = entityManager.find(Student.class, o.getId());
-	    
+
 	    if (st == null) throw new RuntimeException("Student not found");
-	    
-        st.setLogin(st.getLogin());
-        st.setPassword(st.getPassword());
-        st.setFiliere(st.getFiliere());
-        st.setFirstname(st.getFirstname());
-        st.setLastname(st.getLastname());
-        st.setTell(st.getTell());
-        st.setRoles(st.getRoles());
-	    
+
+	    st.setLogin(o.getLogin());
+	    st.setPassword(o.getPassword());
+	    st.setFiliere(o.getFiliere());
+	    st.setFirstname(o.getFirstname());
+	    st.setLastname(o.getLastname());
+	    st.setTell(o.getTell());
+	    st.setRoles(o.getRoles());
+
 	    entityManager.merge(st);
-	    
+
 	    return st;
 	}
+
 
 	@Override
 	@PermitAll
@@ -88,7 +88,10 @@ public class StudentService implements IDao<Student>,IDaoLocal<Student>{
 	@Override
 	@PermitAll
 	public void affect(Role r, User u) {
-		// TODO Auto-generated method stub
+		r=entityManager.merge(r);
+		u=entityManager.merge(u);
+		u.getRoles().add(r);
+		entityManager.merge(u);
 		
 	}
 
